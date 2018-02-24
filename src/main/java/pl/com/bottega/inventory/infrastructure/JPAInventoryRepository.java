@@ -32,6 +32,19 @@ public class JPAInventoryRepository implements InventoryRepository {
         entityManager.persist(inventory);
     }
 
+
+    @Override
+    public Map<String, Inventory> getAll(Set<String> skus) {
+        List<Inventory> inventories = entityManager.createQuery("SELECT i FROM Inventory i WHERE i.skuCode IN (:skuCodeList)")
+                .setParameter("skuCodeList", skus)
+                .getResultList();
+        Map<String, Inventory> map = new HashMap<>();
+        for(Inventory inventory : inventories){
+            map.put(inventory.getSkuCode(), inventory);
+        }
+        return map;
+    }
+
     @Override
     public Long find(String skuCode) {
         Long resultCount;
@@ -39,17 +52,6 @@ public class JPAInventoryRepository implements InventoryRepository {
                     .setParameter("skuCode", skuCode)
                     .getSingleResult();
             return resultCount;
-    }
-
-    @Override
-    public Map<String, Inventory> getAll(Set<String> skus) {
-        List<Inventory> reservationList = entityManager.createQuery("SELECT i FROM Inventory i WHERE i.skuCode IN (:skuCodeList)")
-                .setParameter("skuCodeList", skus)
-                .getResultList();
-
-        Map<String, Inventory> inventoryMap = new HashMap<>();
-        reservationList.stream().forEach(inventory -> inventoryMap.put(inventory.getSkuCode(), inventory));
-        return inventoryMap;
     }
 
     @Override
