@@ -3,6 +3,7 @@ package pl.com.bottega.inventory.ui;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import pl.com.bottega.inventory.domain.commands.InvalidCommandException;
@@ -23,5 +24,4 @@ public class ErrorHandlers {
         HttpStatus.UNPROCESSABLE_ENTITY
     );
   }
-
 }
