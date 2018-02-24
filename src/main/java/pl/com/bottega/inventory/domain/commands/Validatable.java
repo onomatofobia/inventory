@@ -26,7 +26,6 @@ public interface Validatable {
         public Map<String, Set<String>> getErrors() {
             return new HashMap<>(errors);
         }
-
     }
 
     default void validatePresenceOf(String value, String name, ValidationErrors errors) {
@@ -38,5 +37,4 @@ public interface Validatable {
         if(value == null)
             errors.add(name, "can't be blank");
     }
-
 }

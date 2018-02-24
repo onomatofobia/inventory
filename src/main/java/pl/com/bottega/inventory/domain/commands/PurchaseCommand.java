@@ -10,7 +10,6 @@ public class PurchaseCommand implements Validatable{
     @Override
     public void validate(ValidationErrors errors) {
 
-
         if (purchasedProducts.isEmpty()){
             errors.add("skus", "are required");
         }
@@ -36,5 +35,4 @@ public class PurchaseCommand implements Validatable{
     public void setPurchasedProducts(Map<String, Integer> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
-
 }

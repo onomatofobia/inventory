@@ -50,7 +50,6 @@ public class PurchaseHandler implements Handler<PurchaseCommand, PurchaseDto>{
             return purchaseDto;
     }
 
-
     private void validateInvetories(Map<String, Inventory> inventories, PurchaseCommand command) {
         Validatable.ValidationErrors validationErrors = new Validatable.ValidationErrors();
         for(Map.Entry<String, Integer> entry : command.getPurchasedProducts().entrySet()){
@@ -78,8 +77,6 @@ public class PurchaseHandler implements Handler<PurchaseCommand, PurchaseDto>{
         inventory.substractFromAmount(amount);
         inventoryRepository.save(inventory);
     }
-
-
 
     @Override
     public Class<? extends Validatable> getSupportedCommandClass() {

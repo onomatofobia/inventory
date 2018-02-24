@@ -22,7 +22,6 @@ public class Inventory {
 
     public Inventory(){}
 
-
     public Integer getAmount() {
         return amount;
     }
